@@ -1,0 +1,31 @@
+.contact {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 50px;
+	text-align: center;
+}
+input,
+select,
+label {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+input[type="radio"] {
+	display: inline-block;
+}
+
+input {
+	padding: 5px 140px;
+	margin: 8px;
+}
+.input-list {
+	display: flex;
+	justify-content: center;
+	margin: 10px;
+}
+.home-btn {
+	margin: 5px;
+	padding: 5px 20px;
+}
