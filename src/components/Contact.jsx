@@ -1,10 +1,34 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 
 const Contact = () => {
-	const [name, setName] = useState("");
-	const [email, setEmail] = useState("");
-	const [dropdown, setDropdown] = useState("");
-	const [radio, setRadio] = useState("");
+	// const [name, setName] = useState("");
+	// const [email, setEmail] = useState("");
+	// const [dropdown, setDropdown] = useState("");
+	// const [radio, setRadio] = useState("");
+	const [user, setUser] = useState({
+		name: "",
+		email: "",
+		job: "Front-End",
+		gender: "",
+	});
+	let history = useHistory();
+
+	const handleChange = (evt) => {
+		setUser({ ...user, [evt.target.name]: evt.target.value });
+	};
+	const handleClick = () => {
+		const oldData = JSON.parse(localStorage.getItem("user")) || [];
+		localStorage.setItem("user", JSON.stringify([...oldData, user]));
+		history.push("./displaycontact");
+	};
+	// const [user, setUser] = useState({
+	// 	name: name,
+	// 	email: email,
+	// 	job: dropdown,
+	// 	gender: radio,
+	// });
+	// console.log(user);
 
 	return (
 		<>
@@ -14,10 +38,8 @@ const Contact = () => {
 					type="text"
 					name="name"
 					placeholder="Enter your full Name "
-					value={name}
-					onChange={(e) => {
-						setName(e.target.value);
-					}}
+					value={user.name}
+					onChange={handleChange}
 					required
 				/>
 				<label htmlFor="email">E-mail</label>
@@ -25,20 +47,16 @@ const Contact = () => {
 					type="email"
 					name="email"
 					placeholder="Enter your email-Id "
-					value={email}
-					onChange={(e) => {
-						setEmail(e.target.value);
-					}}
+					value={user.email}
+					onChange={handleChange}
 					required
 				/>
 
 				<select
-					name="dropdown"
+					name="job"
 					id="dropdown"
-					value={dropdown}
-					onChange={(e) => {
-						setDropdown(e.target.value);
-					}}
+					value={user.job}
+					onChange={handleChange}
 				>
 					<option value="Front-End">Front-End</option>
 					<option value="Back-End">Back-End</option>
@@ -47,28 +65,24 @@ const Contact = () => {
 
 				<label htmlFor="Male">Male</label>
 				<input
-					name="Male"
+					name="gender"
 					type="radio"
-					checked={radio === "Male"}
+					checked={user.gender === "Male"}
 					value="Male"
-					onChange={(e) => {
-						setRadio(e.target.value);
-					}}
+					onChange={handleChange}
 				/>
 
 				<label htmlFor="Female">female</label>
 				<input
-					name="Female"
+					name="gender"
 					type="radio"
-					checked={radio === "Female"}
+					checked={user.gender === "Female"}
 					value="Female"
-					onChange={(e) => {
-						setRadio(e.target.value);
-					}}
+					onChange={handleChange}
 				/>
 			</div>
 
-			<button>Save</button>
+			<button onClick={handleClick}>Save</button>
 		</>
 	);
 };
