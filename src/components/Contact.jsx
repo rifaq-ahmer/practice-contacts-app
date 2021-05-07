@@ -1,19 +1,26 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router";
+import React, { useEffect, useState } from "react";
+import { useHistory, useLocation } from "react-router";
+import { v4 as uuidv4 } from "uuid";
 
 const Contact = () => {
 	// const [name, setName] = useState("");
 	// const [email, setEmail] = useState("");
 	// const [dropdown, setDropdown] = useState("");
 	// const [radio, setRadio] = useState("");
+	const { state } = useLocation();
+	let history = useHistory();
+
 	const [user, setUser] = useState({
 		name: "",
 		email: "",
 		job: "Front-End",
 		gender: "",
+		id: uuidv4(),
 	});
-	let history = useHistory();
 
+	useEffect(() => {
+		state && setUser(state);
+	}, []);
 	const handleChange = (evt) => {
 		setUser({ ...user, [evt.target.name]: evt.target.value });
 	};

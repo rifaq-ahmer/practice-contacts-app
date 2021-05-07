@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Display = () => {
 	const [data, setData] = useState([]);
@@ -21,6 +22,14 @@ const Display = () => {
 							<li>{item.job}</li>
 							<li>{item.gender}</li>
 						</ul>
+						<Link
+							to={{
+								pathname: "/contact",
+								state: item, // your data array of objects
+							}}
+						>
+							<button>Edit</button>
+						</Link>
 					</div>
 				);
 			})}
