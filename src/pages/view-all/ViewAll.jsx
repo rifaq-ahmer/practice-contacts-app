@@ -25,7 +25,6 @@ const ViewAll = () => {
 						<p>Email-Id: {item.email}</p>
 						<p>Job: {item.job} Developer</p>
 						<p>Gender: {item.gender}</p>
-						<p>Id: {item.id}</p>
 
 						<Link
 							to={{
@@ -35,7 +34,9 @@ const ViewAll = () => {
 						>
 							<button className="display-btn">Edit</button>
 						</Link>
-						<button onClick={() => handleDelete(item.id)}>Delete</button>
+						<button className="del-btn" onClick={() => handleDelete(item.id)}>
+							Delete
+						</button>
 					</div>
 				);
 			})}
