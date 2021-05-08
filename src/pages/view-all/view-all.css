@@ -1,0 +1,11 @@
+.display {
+	text-align: center;
+}
+ul {
+	list-style: none;
+}
+.display-btn {
+	padding: 5px 20px;
+	display: inline;
+	margin-left: 35px;
+}

@@ -1,0 +1,16 @@
+.home {
+	text-align: center;
+}
+
+.home-btn button {
+	padding: 10px;
+	margin: 10px;
+
+	color: black;
+	background-color: white;
+}
+
+button:hover {
+	background-color: black;
+	color: white;
+}
