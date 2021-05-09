@@ -6,7 +6,7 @@ const Home = () => {
 	return (
 		<div className="home">
 			<h1>Welcome in Contact-App</h1>
-			<div className="home-btn">
+			<div>
 				<Link to="/add">
 					<button>Add a Contact </button>
 				</Link>

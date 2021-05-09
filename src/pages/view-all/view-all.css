@@ -1,11 +1,22 @@
-.display {
+.view-title {
+	color: white;
+}
+h1 {
+	margin: 20px 0;
 	text-align: center;
+	color: #b2b7cd;
 }
-ul {
-	list-style: none;
+
+.card-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
 }
-.display-btn {
-	padding: 5px 20px;
-	display: inline;
-	margin-left: 35px;
+.add-btn {
+	display: flex;
+	justify-content: center;
+}
+h1 {
+	color: white;
 }
