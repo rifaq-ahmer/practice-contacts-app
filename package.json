@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "joi-browser": "^13.4.0",
     "mgm-ui-lib": "^1.0.21",
     "react": "^17.0.2",
     "react-dark-light-ui": "^1.30.8",

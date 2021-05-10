@@ -1,20 +1,43 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.card {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.home-container {
+	background-color: #231e39;
+	border-radius: 5px;
+	box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.75);
+	color: #b2b7cd;
+	padding: 30px 0;
+	position: relative;
+	width: 500px;
+	max-width: 100%;
+	text-align: center;
+	margin: 30px 20px;
+}
 .home {
 	text-align: center;
 }
 
 .home h1 {
-	color: white;
+	color: #b2b7cd;
 }
 
 button {
 	padding: 7px;
 	margin: 5px;
 
-	color: black;
-	background-color: white;
+	color: #231e39;
+	background-color: #b2b7cd;
 }
 
 button:hover {
-	background-color: black;
-	color: white;
+	background-color: #231e39;
+	color: #70727a;
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 import ContactCard from "../../components/contact-card/ContactCard";
 import "./view-all.css";
 
@@ -32,7 +33,11 @@ const ViewAll = () => {
 				<h1 className="view-title">Contact List</h1>
 				<div className="card-wrapper">
 					{data?.map((item) => (
-						<ContactCard contact={item} onDelete={deleteFuction} />
+						<ContactCard
+							contact={item}
+							onDelete={deleteFuction}
+							key={uuidv4()}
+						/>
 					))}
 				</div>
 			</div>

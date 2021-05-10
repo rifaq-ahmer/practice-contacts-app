@@ -14,6 +14,11 @@ input {
 	letter-spacing: 1.4px;
 }
 
+.err-msg {
+	color: lightsalmon;
+	margin-top: 5px;
+}
+
 .background {
 	display: flex;
 	min-height: 100vh;

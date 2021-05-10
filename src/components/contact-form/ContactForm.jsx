@@ -1,19 +1,35 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Home from "../../pages/home/Home";
-
+import Joi from "joi-browser";
 import { v4 as uuidv4 } from "uuid";
 import "./ContactForm.css";
 
 const ContactForm = (props) => {
 	const { onContactSave, contactDataToEdit } = props;
+	const [errors, setErrors] = useState({});
+
 	const defaultData = {
 		name: "",
 		email: "",
 		job: "Front-End",
-		gender: "",
+		gender: "Male",
 		image: "",
 		id: uuidv4(),
+	};
+	const schema = {
+		name: Joi.string().required().label("Name"),
+		email: Joi.string().required().label("Email"),
+	};
+
+	const validate = ({ name, email }) => {
+		const result = Joi.validate({ name, email }, schema, { abortEarly: false });
+		if (!result.error) return {};
+		const error = {};
+		for (let item of result.error.details) {
+			error[item.path[0]] = item.message;
+		}
+		setErrors(error);
+		return error;
 	};
 
 	const [contact, setContact] = useState(contactDataToEdit || defaultData);
@@ -22,53 +38,62 @@ const ContactForm = (props) => {
 		setContact({ ...contact, [evt.target.name]: evt.target.value });
 	};
 
+	const handleSubmit = (contact) => {
+		const error = validate(contact);
+		if (Object.keys(error).length < 1) {
+			onContactSave(contact);
+		}
+	};
+
 	return (
-		<div class="background">
-			<div class="container">
-				<div class="screen">
-					<div class="screen-header">
-						<div class="screen-header-left">
-							<div class="screen-header-button close"></div>
-							<div class="screen-header-button maximize"></div>
-							<div class="screen-header-button minimize"></div>
+		<div className="background">
+			<div className="container">
+				<div className="screen">
+					<div className="screen-header">
+						<div className="screen-header-left">
+							<div className="screen-header-button close"></div>
+							<div className="screen-header-button maximize"></div>
+							<div className="screen-header-button minimize"></div>
 						</div>
-						<div class="screen-header-right">
-							<div class="screen-header-ellipsis"></div>
-							<div class="screen-header-ellipsis"></div>
-							<div class="screen-header-ellipsis"></div>
+						<div className="screen-header-right">
+							<div className="screen-header-ellipsis"></div>
+							<div className="screen-header-ellipsis"></div>
+							<div className="screen-header-ellipsis"></div>
 						</div>
 					</div>
-					<div class="screen-body">
-						<div class="screen-body-item left">
-							<div class="app-title">
+					<div className="screen-body">
+						<div className="screen-body-item left">
+							<div className="app-title">
 								<span>CONTACT</span>
 								<span>APP</span>
 							</div>
-							{/* <div class="app-contact">CONTACT INFO : +62 81 314 928 595</div> */}
+							{/* <div className="app-contact">CONTACT INFO : +62 81 314 928 595</div> */}
 						</div>
-						<div class="screen-body-item">
-							<div class="app-form">
-								<div class="app-form-group">
+						<div className="screen-body-item">
+							<div className="app-form">
+								<div className="app-form-group">
 									<input
-										class="app-form-control"
+										className="app-form-control"
 										placeholder="NAME"
 										value={contact.name}
 										name="name"
 										onChange={handleChange}
 									/>
+									<p className="err-msg">{errors.name}</p>
 								</div>
-								<div class="app-form-group">
+								<div className="app-form-group">
 									<input
-										class="app-form-control"
+										className="app-form-control"
 										placeholder="EMAIL"
 										value={contact.email}
 										onChange={handleChange}
 										name="email"
 									/>
+									<p className="err-msg">{errors.email}</p>
 								</div>
-								<div class="app-form-group">
+								<div className="app-form-group">
 									<select
-										class="app-form-control"
+										className="app-form-control"
 										name="job"
 										id="dropdown"
 										value={contact.job}
@@ -79,9 +104,9 @@ const ContactForm = (props) => {
 										<option value="Full-Stack">Full-Stack</option>
 									</select>
 								</div>
-								<div class="app-form-group">
+								<div className="app-form-group">
 									<select
-										class="app-form-control"
+										className="app-form-control"
 										name="gender"
 										type="radio"
 										value={contact.gender}
@@ -92,13 +117,13 @@ const ContactForm = (props) => {
 									</select>
 								</div>
 
-								<div class="app-form-group buttons">
+								<div className="app-form-group buttons">
 									<Link to="/">
-										<button class="app-form-button">CANCEL</button>
+										<button className="app-form-button">CANCEL</button>
 									</Link>
 									<button
-										class="app-form-button"
-										onClick={() => onContactSave(contact)}
+										className="app-form-button"
+										onClick={() => handleSubmit(contact)}
 									>
 										SAVE
 									</button>
